@@ -2,13 +2,17 @@
   <div class="header" :class="{ isDark: dark }">
     <div class="container">
       <Logo :dark="dark" />
-      <NavItems :dark="dark" />
+      <div class="desktop">
+        <NavItems :dark="dark" />
+      </div>
+      <SidenavToggler :dark="dark" />
     </div>
   </div>
 </template>
 
 <script>
 import NavItems from "@/components/Navigation/NavItems";
+import SidenavToggler from "@/components/Navigation/SidenavToggler.vue";
 
 export default {
   props: {
@@ -34,6 +38,13 @@ export default {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+
+  .desktop {
+    display: none;
+    @media (min-width: 992px) {
+      display: block;
+    }
   }
 }
 </style>

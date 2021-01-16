@@ -56,6 +56,7 @@ export default {
       this.files.push(file);
     },
     onSave() {
+      console.log(this.$v);
       const params = this.$v.formData.$model;
       params.files = this.files;
       this.$emit("submit", params);

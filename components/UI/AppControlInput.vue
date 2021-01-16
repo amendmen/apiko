@@ -1,7 +1,11 @@
 <template>
   <div class="input-control">
     <label class="input-control__label"
-      ><slot /><span class="input-control__required">*</span></label
+      ><slot /><span
+        v-if="data.$params.required"
+        class="input-control__required"
+        >*</span
+      ></label
     >
     <input
       v-if="controlType === 'input'"
@@ -56,6 +60,9 @@ export default {
     return {
       isPassVisible: false
     };
+  },
+  mounted() {
+    console.log(this.data);
   }
 };
 </script>

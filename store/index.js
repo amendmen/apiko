@@ -4,11 +4,15 @@ import Cookie from "js-cookie";
 const createStore = () => {
   return new Vuex.Store({
     state: {
+      isShowSidenav: false,
       products: [],
       token: null,
       userId: null
     },
     mutations: {
+      showSidenav(state, isShow) {
+        state.isShowSidenav = isShow;
+      },
       setToken(state, token) {
         state.token = token;
       },
@@ -113,14 +117,13 @@ const createStore = () => {
             });
             delete product.files;
             product.photos = photos;
-            return saveProduct();
+            saveProduct();
           });
+        } else {
+          saveProduct();
         }
       },
       setProducts(context) {
-        console.log("!!!!!");
-        console.log(this.$fire);
-
         this.$fire.database
           .ref("/products")
           .get()
@@ -257,6 +260,9 @@ const createStore = () => {
       },
       favorites(state) {
         return state.products.filter(item => item.isFavList);
+      },
+      isShowSidenav(state) {
+        return state.isShowSidenav;
       }
     }
   });

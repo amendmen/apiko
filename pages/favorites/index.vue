@@ -8,7 +8,7 @@
 <script>
 export default {
   layout: "default",
-  middleware: ["check-auth"],
+  middleware: ["check-auth", "auth"],
   computed: {
     products() {
       return this.$store.getters.favorites;

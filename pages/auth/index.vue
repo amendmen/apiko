@@ -23,6 +23,7 @@ import Register from "@/components/Auth/Register";
 
 export default {
   layout: "auth",
+  middleware: ["check-auth"],
   component: {
     Login,
     Register

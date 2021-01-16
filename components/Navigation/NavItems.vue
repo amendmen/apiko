@@ -51,6 +51,16 @@ export default {
 .navigation {
   color: #2b2b2b;
 
+  &__items {
+    list-style: none;
+    display: flex;
+    flex-flow: column;
+    padding: 0;
+  }
+
+  &__item {
+    font-size: 18px;
+  }
   .icon {
     height: 14px;
     width: 16px;
@@ -61,6 +71,8 @@ export default {
     color: #2b2b2b;
     text-decoration: none;
     cursor: pointer;
+    padding: 5px;
+    display: block;
   }
 
   &.isDark {
@@ -77,11 +89,14 @@ export default {
   }
   @media (min-width: 992px) {
     &__items {
-      list-style: none;
-      display: flex;
+      flex-flow: row;
       align-items: center;
     }
 
+    &__item {
+      font-size: 14px;
+      padding: 0;
+    }
     a,
     span {
       padding: 5px 40px;
