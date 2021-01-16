@@ -43,11 +43,12 @@ export default {
 
 <style lang="scss">
 .auth {
-  width: 100%;
+  max-width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 0 15px;
 
   &__wrapper {
     width: 100%;

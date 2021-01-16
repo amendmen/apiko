@@ -48,32 +48,32 @@ export default {
 
 <style lang="scss">
 .search {
-  height: 90px;
+  padding: 15px 0;
   background-color: #171236;
   display: flex;
   align-items: center;
+  flex-flow: column;
 
   &__form {
     display: flex;
+    flex-wrap: wrap;
   }
 
   &__group {
-    margin-right: 7px;
     display: flex;
-    flex-flow: column;
     position: relative;
-
-    &:first-child {
-      width: 60%;
-    }
+    margin-bottom: 5px;
+    width: 100%;
   }
 
   &__control {
-    height: 50px;
+    height: 46px;
     font-size: 15px;
     line-height: 31px;
     color: rgba(123, 123, 123, 0.776523);
+    padding: 0;
     padding-left: 52px;
+    width: 100%;
   }
 
   &__icon {
@@ -83,6 +83,7 @@ export default {
   }
   &__btn {
     background: #3e3961;
+    height: 50px;
     border-radius: 4px;
     flex-grow: 1;
     color: #fff;
@@ -90,8 +91,31 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-basis: 200px;
     cursor: pointer;
+  }
+
+  @media (min-width: 768px) {
+    &__group {
+      width: 40%;
+      margin-right: 3px;
+    }
+  }
+
+  @media (min-width: 992px) {
+    &__form {
+      flex-wrap: nowrap;
+    }
+
+    &__group {
+      width: auto;
+      &:first-child {
+        width: 60%;
+      }
+    }
+
+    &__btn {
+      width: 176px;
+    }
   }
 }
 </style>

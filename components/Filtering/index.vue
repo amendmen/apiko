@@ -8,7 +8,7 @@
     </div>
     <div class="filter__range">
       <input class="filter__input" type="text" placeholder="Price from (USD)" />
-      -
+      <div class="divider"></div>
       <input class="filter__input" type="text" placeholder="Price to (USD)" />
     </div>
   </div>
@@ -27,15 +27,15 @@ export default {};
 
   margin-top: 20px;
   text-align: left;
-  padding-bottom: 0;
   &.card {
     padding: 12px;
     padding-bottom: 0;
   }
   &__category {
-    margin-right: 23px;
     position: relative;
     margin-bottom: 12px;
+    width: 100%;
+
     .icon {
       position: absolute;
       left: 10px;
@@ -43,7 +43,7 @@ export default {};
     }
     select {
       height: 35px;
-      width: 285px;
+      width: 100%;
       background: #f9fafb;
       border: 1px solid #dedee0;
       box-sizing: border-box;
@@ -53,18 +53,41 @@ export default {};
     }
   }
 
+  .divider {
+    height: 1px;
+    width: 12px;
+    background-color: #dedee0;
+    margin: 7px;
+  }
   &__range {
+    display: flex;
+    align-items: center;
     margin-bottom: 12px;
+    width: 100%;
   }
 
   &__input {
     height: 35px;
-    width: 143px;
+    width: 100%;
     background: #f9fafb;
     border: 1px solid #dedee0;
     box-sizing: border-box;
     border-radius: 5px;
     padding: 5px;
+  }
+
+  @media (min-width: 680px) {
+    &__category {
+      margin-right: 23px;
+      width: 285px;
+    }
+
+    &__range {
+      width: auto;
+    }
+    &__input {
+      width: 143px;
+    }
   }
 }
 </style>
