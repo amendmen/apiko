@@ -85,6 +85,7 @@ export default {
     width: 92px;
     height: 92px;
     background: #e4e4e4;
+    border: none;
     border-radius: 4px;
     color: $main;
     display: flex;

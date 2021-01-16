@@ -2,13 +2,28 @@
   <div class="product-form">
     <div class="product-form__title">Add product</div>
     <form novalidate @submit.prevent="onSave()">
-      <AppControlInput :data="$v.formData.title">title</AppControlInput>
-      <AppControlInput :data="$v.formData.location">location</AppControlInput>
-      <AppControlInput :data="$v.formData.description" controlType="textarea"
+      <AppControlInput
+        :data="$v.formData.title"
+        :placeholder="'For example: Iron man suit'"
+        >title</AppControlInput
+      >
+      <AppControlInput
+        :data="$v.formData.location"
+        :placeholder="'For example: Los Angeles, CA'"
+        >location</AppControlInput
+      >
+      <AppControlInput
+        :data="$v.formData.description"
+        controlType="textarea"
+        :placeholder="'For example: Iron man suit'"
         >description</AppControlInput
       >
       <UploadImage @addedFile="onFileAdded($event)" />
-      <AppControlInput :data="$v.formData.price">price</AppControlInput>
+      <AppControlInput
+        :data="$v.formData.price"
+        :placeholder="'For example: 99'"
+        >price</AppControlInput
+      >
       <AppButton :type="'submit'" :disabled="$v.$invalid">Submit</AppButton>
     </form>
   </div>

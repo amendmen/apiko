@@ -2,8 +2,14 @@
   <div class="card">
     <div>Register</div>
     <form novalidate @submit.prevent="onSubmit()">
-      <AppControlInput :data="$v.formData.email">email</AppControlInput>
-      <AppControlInput :data="$v.formData.name">full name</AppControlInput>
+      <AppControlInput
+        :data="$v.formData.email"
+        :placeholder="'Example@gmail.com'"
+        >email</AppControlInput
+      >
+      <AppControlInput :data="$v.formData.name" :placeholder="'Tony Stark'"
+        >full name</AppControlInput
+      >
       <AppControlInput :data="$v.formData.password" :isPassword="true"
         >password</AppControlInput
       >

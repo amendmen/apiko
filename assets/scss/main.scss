@@ -35,3 +35,14 @@ body {
   height: 18px;
   color: #5c5c5c;
 }
+
+input,
+button,
+textarea {
+  outline: none;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(102, 102, 102, 0.466455);
+}

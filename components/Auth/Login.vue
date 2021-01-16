@@ -2,14 +2,26 @@
   <div class="card">
     <div>Login</div>
     <form novalidate @submit.prevent="onSubmit()">
-      <AppControlInput :data="$v.formData.email">email</AppControlInput>
+      <AppControlInput
+        :data="$v.formData.email"
+        :placeholder="'Example@gmail.com'"
+        >email</AppControlInput
+      >
       <AppControlInput
         :data="$v.formData.password"
         :isPassword="true"
         :help="'Don’t remember password?'"
         >password</AppControlInput
       >
-      <AppButton :disabled="$v.$invalid" :type="'submit'">Continue</AppButton>
+      <AppButton
+        :disabled="
+          $v.$invalid ||
+            !$v.formData.password.$model ||
+            !$v.formData.email.$model
+        "
+        :type="'submit'"
+        >Continue</AppButton
+      >
     </form>
   </div>
 </template>
@@ -23,11 +35,9 @@ export default {
   validations: {
     formData: {
       email: {
-        email,
-        required
+        email
       },
       password: {
-        required,
         minLength: minLength(6)
       }
     }

@@ -12,12 +12,14 @@
       class="input-control__input"
       v-model.trim="data.$model"
       :type="isPassword && !isPassVisible ? 'password' : 'text'"
+      :placeholder="placeholder"
     />
     <textarea
       v-if="controlType === 'textarea'"
       class="input-control__textarea"
       rows="10"
       v-model.trim="data.$model"
+      :placeholder="placeholder"
     ></textarea>
     <div
       v-if="isPassword"
@@ -46,6 +48,10 @@ export default {
       required: false,
       default: "input"
     },
+    placeholder: {
+      type: String,
+      default: ""
+    },
     help: {
       type: String,
       required: false,
@@ -60,9 +66,6 @@ export default {
     return {
       isPassVisible: false
     };
-  },
-  mounted() {
-    console.log(this.data);
   }
 };
 </script>
