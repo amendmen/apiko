@@ -7,15 +7,44 @@
       </select>
     </div>
     <div class="filter__range">
-      <input class="filter__input" type="text" placeholder="Price from (USD)" />
+      <input
+        class="filter__input"
+        type="text"
+        placeholder="Price from (USD)"
+        v-model="min"
+        @input="onChangeFilterRange('min')"
+      />
       <div class="divider"></div>
-      <input class="filter__input" type="text" placeholder="Price to (USD)" />
+      <input
+        class="filter__input"
+        type="text"
+        placeholder="Price to (USD)"
+        v-model="max"
+        @input="onChangeFilterRange('max')"
+      />
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      min: null,
+      max: null
+    };
+  },
+  methods: {
+    onChangeFilterRange(type) {
+      this[type] = this[type].replace(/\D/g, "");
+      const filter = {
+        type: type,
+        value: this[type]
+      };
+      this.$store.commit("setFilterRange", filter);
+    }
+  }
+};
 </script>
 
 <style lang="scss">

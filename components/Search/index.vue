@@ -79,7 +79,7 @@ export default {
   &__icon {
     position: absolute;
     left: 15px;
-    top: 20px;
+    top: 16px;
   }
   &__btn {
     background: #3e3961;

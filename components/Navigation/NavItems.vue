@@ -9,12 +9,15 @@
           <nuxt-link exact to="/sell">Sell</nuxt-link>
         </li>
         <li class="navigation__item">
-          <nuxt-link exact to="/favorites">
+          <div class="user">TS</div>
+        </li>
+        <li class="navigation__item">
+          <nuxt-link exact to="/favorites" class="fav">
             <svg-icon name="heart-shape" />
           </nuxt-link>
         </li>
         <li class="navigation__item">
-          <span @click="onLogout()">Logout</span>
+          <span @click="onLogout()"> <svg-icon name="logout"/></span>
         </li>
       </template>
 
@@ -60,6 +63,7 @@ export default {
 
   &__item {
     font-size: 18px;
+    margin-bottom: 15px;
   }
   .icon {
     height: 14px;
@@ -87,6 +91,20 @@ export default {
     border-radius: 4px;
     color: #fff;
   }
+
+  .user {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #f1c40f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(19, 15, 2, 0.72);
+    margin-right: 20px;
+  }
   @media (min-width: 992px) {
     &__items {
       flex-flow: row;
@@ -97,9 +115,15 @@ export default {
       font-size: 14px;
       padding: 0;
     }
-    a,
-    span {
+    a {
       padding: 5px 40px;
+    }
+
+    .user {
+      margin-left: 20px;
+    }
+    .fav {
+      padding: 5px;
     }
   }
 }

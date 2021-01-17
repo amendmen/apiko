@@ -7,7 +7,11 @@ const createStore = () => {
       isShowSidenav: false,
       products: [],
       token: null,
-      userId: null
+      userId: null,
+      filter: {
+        min: "",
+        max: ""
+      }
     },
     mutations: {
       showSidenav(state, isShow) {
@@ -33,6 +37,9 @@ const createStore = () => {
       },
       setProducts(state, products) {
         state.products = products;
+      },
+      setFilterRange(state, filter) {
+        state.filter[filter.type] = filter.value;
       }
     },
     actions: {
@@ -50,16 +57,19 @@ const createStore = () => {
 
         userId = userId.split("=")[1];
 
+        const url = "/products.json"; //?orderBy="userId"&equalTo="' + userId + '"'
+
         return context.app.$axios
-          .$get('/products.json?orderBy="userId"&equalTo="' + userId + '"')
+          .$get(url)
           .then(data => {
             const loadedProducts = [];
 
             for (let id in data) {
-              loadedProducts.push({
-                ...data[id],
-                id: id
-              });
+              if (data[id].userId == userId)
+                loadedProducts.push({
+                  ...data[id],
+                  id: id
+                });
             }
             vuexContext.commit("setProducts", loadedProducts);
           })
@@ -124,12 +134,6 @@ const createStore = () => {
         }
       },
       setProducts(context) {
-        this.$fire.database
-          .ref("/products")
-          .get()
-          .then(res => {
-            console.log(res);
-          });
         if (context.state.products.length) {
           return;
         }
@@ -241,6 +245,7 @@ const createStore = () => {
       logout(context) {
         context.commit("setToken", null);
         context.commit("setUserId", null);
+        context.commit("setProducts", []);
         Cookie.remove("userId");
         Cookie.remove("jwt");
         Cookie.remove("expirationDate");
@@ -263,6 +268,19 @@ const createStore = () => {
       },
       isShowSidenav(state) {
         return state.isShowSidenav;
+      },
+      filteredProducts(state) {
+        const filter = state.filter;
+        const list = state.products.filter(item => {
+          if (
+            item.price > +filter.min &&
+            ((filter.max !== "" && item.price < +filter.max) ||
+              filter.max === "")
+          ) {
+            return item;
+          }
+        });
+        return list;
       }
     }
   });
